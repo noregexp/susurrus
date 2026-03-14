@@ -170,6 +170,6 @@ aam.addcmd("walkto", function(args)
 	end
 end)
 
-aam.tocmdlist("walktotool [id]", "gives you a walkto tool for the alt")
+aam.tocmdlist("walktotool [id]", "gives you a pathfind tool for the alt")
 
 -------------------------------------------------------------------------------------------------------------------------------
