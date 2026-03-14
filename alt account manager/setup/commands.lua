@@ -20,7 +20,6 @@ local mouse = plr:GetMouse()
 
 local getgenv = getgenv() or _G
 local aam = getgenv.aam
-local addCommandEntry = getgenv.addCommandEntry
 
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +58,7 @@ aam.addcmd("tp", function(args)
 	end
 end)
 
-addCommandEntry("tp [id] [target]", "teleports the alt to the target")
+aam.tocmdlist("tp [id] [target]", "teleports the alt to the target")
 
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -88,7 +87,7 @@ aam.addcmd("follow", function(args)
 	end
 end)
 
-addCommandEntry("follow [id] [target]", "makes the alt follow the target")
+aam.tocmdlist("follow [id] [target]", "makes the alt follow the target")
 
 aam.addcmd("unfollow", function()
 	if aam.followconn then
@@ -98,7 +97,7 @@ aam.addcmd("unfollow", function()
 	if hum then hum:Move(Vector3.new(0,0,0)) end
 end)
 
-addCommandEntry("unfollow [id]", "makes the alt stop following the target")
+aam.tocmdlist("unfollow [id]", "makes the alt stop following the target")
 
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -106,7 +105,7 @@ aam.addcmd("say", function(args)
 	tcs.TextChannels.RBXGeneral:SendAsync(args)
 end)
 
-addCommandEntry("say [id] [text]", "makes the alt say the target text")
+aam.tocmdlist("say [id] [text]", "makes the alt say the target text")
 
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -157,7 +156,7 @@ aam.addcmd("tpto", function(args)
 	end
 end)
 
-addCommandEntry("tptool [id]", "gives you a teleport tool for the alt")
+aam.tocmdlist("tptool [id]", "gives you a teleport tool for the alt")
 
 aam.addcmd("walkto", function(args)
 	local coords = args:split(",")
@@ -171,6 +170,6 @@ aam.addcmd("walkto", function(args)
 	end
 end)
 
-addCommandEntry("walktotool [id]", "gives you a walkto tool for the alt")
+aam.tocmdlist("walktotool [id]", "gives you a walkto tool for the alt")
 
 -------------------------------------------------------------------------------------------------------------------------------
