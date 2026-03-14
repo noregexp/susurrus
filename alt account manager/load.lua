@@ -20,8 +20,7 @@ local function load(file)
 	end
 end
 
-load("controllerside.lua")
+load("init.lua")
 load("commands.lua")
-load("altside.lua")
 
 -------------------------------------------------------------------------------------------------------------------------------
