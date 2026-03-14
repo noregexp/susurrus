@@ -19,7 +19,7 @@ local cam = workspace.CurrentCamera
 local mouse = plr:GetMouse()
 
 local getgenv = getgenv() or _G
-local aamhandler = getgenv.aamhandler
+local aam = getgenv.aam
 local addCommandEntry = getgenv.addCommandEntry
 
 -------------------------------------------------------------------------------------------------------------------------------
@@ -44,11 +44,11 @@ workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function() cam = wor
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-aamhandler:addcmd("tp", function(args)
+aam.addcmd("tp", function(args)
 	local targetChar
 
-	if args == "me" and aamhandler.mainaccount then
-		targetChar = aamhandler.mainaccount.Character
+	if args == "me" and aam.mainaccount then
+		targetChar = aam.mainaccount.Character
 	else
 		local targetPlayer = plrs:FindFirstChild(args)
 		if targetPlayer then targetChar = targetPlayer.Character end
@@ -63,18 +63,18 @@ addCommandEntry("tp [id] [target]", "teleports the alt to the target")
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-getgenv.aamhandler.followconn = nil
+aam.followconn = nil
 
-aamhandler:addcmd("follow", function(args)
-	if getgenv.aamhandler.followconn then getgenv.aamhandler.followconn:Disconnect() end
-	local targetPlayer = plrs:FindFirstChild(args) or aamhandler.mainaccount
+aam.addcmd("follow", function(args)
+	if aam.followconn then aam.followconn:Disconnect() end
+	local targetPlayer = plrs:FindFirstChild(args) or aam.mainaccount
 
 	if targetPlayer and targetPlayer.Character then
 		local tChar = targetPlayer.Character
-		getgenv.aamhandler.followconn = rs.Heartbeat:Connect(function()
+		aam.followconn = rs.Heartbeat:Connect(function()
 			local tRoot = tChar:FindFirstChild("HumanoidRootPart")
 			if not tRoot or not root or not char.Parent then 
-				if getgenv.aamhandler.followconn then getgenv.aamhandler.followconn:Disconnect() end
+				if aam.followconn then aam.followconn:Disconnect() end
 				return 
 			end
 
@@ -90,10 +90,10 @@ end)
 
 addCommandEntry("follow [id] [target]", "makes the alt follow the target")
 
-aamhandler:addcmd("unfollow", function()
-	if getgenv.aamhandler.followconn then
-		getgenv.aamhandler.followconn:Disconnect()
-		getgenv.aamhandler.followconn = nil
+aam.addcmd("unfollow", function()
+	if aam.followconn then
+		aam.followconn:Disconnect()
+		aam.followconn = nil
 	end
 	if hum then hum:Move(Vector3.new(0,0,0)) end
 end)
@@ -102,7 +102,7 @@ addCommandEntry("unfollow [id]", "makes the alt stop following the target")
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-aamhandler:addcmd("say", function(args)
+aam.addcmd("say", function(args)
 	tcs.TextChannels.RBXGeneral:SendAsync(args)
 end)
 
@@ -128,25 +128,25 @@ local function createDynamicTool(altId, mode)
 		local cmdMode = (mode == "tp") and "tpto" or "walkto"
 
 		local posString = string.format("%.2f,%.2f,%.2f", pos.X, pos.Y, pos.Z)
-		aamhandler:broadcastcommand(cmdMode .. " " .. cleanId .. " " .. posString)
+		aam.broadcastcommand(cmdMode .. " " .. cleanId .. " " .. posString)
 	end)
 end
 
-aamhandler:addcmd("tptool", function(args)
+aam.addcmd("tptool", function(args)
 	local ids = args:split(",")
 	for _, id in ipairs(ids) do
 		createDynamicTool(id, "tp")
 	end
 end)
 
-aamhandler:addcmd("walktotool", function(args)
+aam.addcmd("walktotool", function(args)
 	local ids = args:split(",")
 	for _, id in ipairs(ids) do
 		createDynamicTool(id, "walkto")
 	end
 end)
 
-aamhandler:addcmd("tpto", function(args)
+aam.addcmd("tpto", function(args)
 	local coords = args:split(",")
 	if #coords >= 3 then
 		local x, y, z = tonumber(coords[1]), tonumber(coords[2]), tonumber(coords[3])
@@ -159,13 +159,13 @@ end)
 
 addCommandEntry("tptool [id]", "gives you a teleport tool for the alt")
 
-aamhandler:addcmd("walkto", function(args)
+aam.addcmd("walkto", function(args)
 	local coords = args:split(",")
 	if #coords >= 3 then
 		local x, y, z = tonumber(coords[1]), tonumber(coords[2]), tonumber(coords[3])
 		if x and y and z then
 			local targetPos = Vector3.new(x, y, z)
-			if getgenv.aamhandler.followconn then getgenv.aamhandler.followconn:Disconnect() getgenv.aamhandler.followconn = nil end
+			if aam.followconn then aam.followconn:Disconnect() aam.followconn = nil end
 			hum:MoveTo(targetPos)
 		end
 	end
