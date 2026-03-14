@@ -739,10 +739,10 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-	if not getgenv().aamchecking then
+	if not getgenv.aamhandler.checking then
 		while task.wait(5) do aamhandler:requesthandshake() end
 	end
-	getgenv().aamchecking = true
+	getgenv.aamhandler.checking = true
 end)
 
 -------------------------------------------------------------------------------------------------------------------------------
