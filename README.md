@@ -2,7 +2,7 @@
 
 **Alt Account Manager** by **stunt** & **ksu**
 
-loadstring: ``
+loadstring: `loadstring(game:HttpGet("https://raw.githubusercontent.com/noregexp/susurrus/refs/heads/main/alt%20account%20manager/load.lua"))()`
 
 # way (0xy)
 
