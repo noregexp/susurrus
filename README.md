@@ -2,7 +2,7 @@
 
 **Alt Account Manager** by **stunt** & **ksu**
 
-extracted from [unable](https://www.roblox.com/users/878865655/profile)'s "skiding.rbxl" file
+extracted from [unable](https://www.roblox.com/users/878865655/profile)'s "skidding.rbxl" file
 
 # loadstring
 ```lua
