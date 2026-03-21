@@ -4,11 +4,11 @@
 
 loadstring: `loadstring(game:HttpGet("https://raw.githubusercontent.com/noregexp/susurrus/refs/heads/main/alt%20account%20manager/load.lua"))()`
 
-# way (0xy)
+# visualization
 
 ```
 load.lua
 └ setup
   ├ init.lua
   └ commands.lua
-  ```
+```
